@@ -67,7 +67,7 @@ img{
 `;
 
 export const Section = styled.div`
-  width: 720px;
+  width: 1400px;
   padding: 0 15px;
 `;
 

@@ -15,7 +15,6 @@ export class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state.searchQuery);
-    console.log(this.state.searchQuery);
     this.setState({ searchQuery: '' });
   };
 
@@ -27,6 +26,7 @@ export class Searchbar extends Component {
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
+          value={this.state.searchQuery}
           onChange={this.handleChange}
         />
         <SearchBtn type="submit">
