@@ -1,3 +1,3 @@
-import { InputStyle } from './Input.styled';
+import { InputStyle, SearchWrapper } from './Input.styled';
 
 export const Input = props => <InputStyle {...props} />;
