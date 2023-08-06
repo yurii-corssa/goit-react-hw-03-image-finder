@@ -10,7 +10,7 @@ export const getPhotos = async (searchQuery, page) => {
     key: KEY,
     image_type: 'photo',
     orientation: 'horizontal',
-    per_page: 3,
+    per_page: 12,
   });
 
   try {

@@ -4,6 +4,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { getPhotos } from './services/api';
 import { Loader } from './Loader/Loader';
+import { Button } from './Button/Button';
 
 export class App extends Component {
   state = {
@@ -25,7 +26,7 @@ export class App extends Component {
 
       this.setState({
         images: [...images.hits],
-        loadMoreBtn: page < Math.ceil(images.totalHits / 3),
+        loadMoreBtn: page < Math.ceil(images.totalHits / 12),
       });
       this.handleLoader();
     }
@@ -65,15 +66,13 @@ export class App extends Component {
           </Header>
         </Section>
         <Section>
-          {loader ? (
-            <Loader />
-          ) : (
-            <ImageGallery
-              images={images}
-              loadMoreBtn={loadMoreBtn}
-              onLoadMore={this.loadMore}
-            />
-          )}
+          <ImageGallery
+            images={images}
+            loadMoreBtn={loadMoreBtn}
+            onLoadMore={this.loadMore}
+          />
+          {loader && <Loader />}
+          {loadMoreBtn && <Button onClick={this.loadMore}>Load More</Button>}
         </Section>
       </>
     );

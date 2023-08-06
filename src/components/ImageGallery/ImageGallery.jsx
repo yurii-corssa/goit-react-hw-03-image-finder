@@ -1,14 +1,42 @@
 import { List } from './ImageGallery.styled';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
-import { Button } from 'components/Button/Button';
+import { Component } from 'react';
+import { Modal } from 'components/Modal/Modal';
 
-export const ImageGallery = ({ images, loadMoreBtn, onLoadMore }) => {
-  return (
-    <>
-      <List>
-        <ImageGalleryItem images={images} />
-      </List>
-      {loadMoreBtn && <Button onClick={onLoadMore}>Load More</Button>}
-    </>
-  );
-};
+export class ImageGallery extends Component {
+  state = {
+    isModalOpen: false,
+    image: '',
+    tags: '',
+  };
+
+  openModal = (image, tags) => {
+    this.setState({ isModalOpen: true, image, tags });
+  };
+
+  closeModal = e => {
+    if (e.target === e.currentTarget || e.code === 'Escape') {
+      this.setState({ isModalOpen: false });
+    }
+  };
+
+  render() {
+    const { isModalOpen, image, tags } = this.state;
+
+    return (
+      <>
+        <List>
+          <ImageGalleryItem
+            images={this.props.images}
+            onOpenModal={this.openModal}
+          />
+        </List>
+        {isModalOpen && (
+          <Modal onCloseModal={this.closeModal}>
+            <img src={image} alt={tags} />
+          </Modal>
+        )}
+      </>
+    );
+  }
+}
