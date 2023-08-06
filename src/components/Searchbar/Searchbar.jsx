@@ -4,18 +4,18 @@ import { Component } from 'react';
 
 export class Searchbar extends Component {
   state = {
-    searchQuery: '',
+    query: '',
   };
 
   handleChange = e => {
-    const searchQuery = e.target.value;
-    this.setState({ searchQuery });
+    const query = e.target.value;
+    this.setState({ query });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.searchQuery);
-    this.setState({ searchQuery: '' });
+    this.props.onSubmit(this.state.query);
+    this.setState({ query: '' });
   };
 
   render() {
@@ -26,7 +26,7 @@ export class Searchbar extends Component {
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
-          value={this.state.searchQuery}
+          value={this.state.query}
           onChange={this.handleChange}
         />
         <SearchBtn type="submit">

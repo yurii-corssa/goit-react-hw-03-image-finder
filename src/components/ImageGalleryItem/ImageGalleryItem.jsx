@@ -2,8 +2,8 @@
 
 import { ListItems } from './ImageGalleryItem.styled';
 
-export const ImageGalleryItem = ({ data }) => {
-  return data.map(({ id, webformatURL, largeImageURL, tags }) => {
+export const ImageGalleryItem = ({ images }) => {
+  return images.map(({ id, webformatURL, largeImageURL, tags }) => {
     return (
       <ListItems key={id}>
         <img src={webformatURL} alt={tags} />
