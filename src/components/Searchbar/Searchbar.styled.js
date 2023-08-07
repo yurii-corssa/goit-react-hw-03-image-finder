@@ -5,6 +5,7 @@ export const SearchBar = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   width: 100%;
   height: 40px;
   overflow: hidden;

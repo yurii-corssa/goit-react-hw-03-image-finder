@@ -74,6 +74,7 @@ export const Section = styled.div`
 export const Header = styled.div`
   width: 100%;
   height: 100%;
-  padding: 10px 15px;
+  padding: 15px 0;
+  margin-bottom: 10px;
   background-color: var(--app-container);
 `;

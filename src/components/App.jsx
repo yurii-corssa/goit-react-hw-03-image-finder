@@ -33,11 +33,12 @@ export class App extends Component {
 
     if (prevState.page !== page && prevState.query === query) {
       this.handleLoader();
+
       const images = await getPhotos(query, page);
 
       this.setState(prev => ({
         images: [...prev.images, ...images.hits],
-        loadMoreBtn: page < Math.ceil(images.totalHits / 3),
+        loadMoreBtn: page < Math.ceil(images.totalHits / 12),
       }));
       this.handleLoader();
     }
