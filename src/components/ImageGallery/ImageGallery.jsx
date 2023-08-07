@@ -2,10 +2,12 @@ import { List } from './ImageGallery.styled';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Component } from 'react';
 import { Modal } from 'components/Modal/Modal';
+import { Loader } from 'components/Loader/Loader';
 
 export class ImageGallery extends Component {
   state = {
     isModalOpen: false,
+    isLoading: false,
     image: '',
     tags: '',
   };
@@ -20,8 +22,15 @@ export class ImageGallery extends Component {
     }
   };
 
+  handleIsLoad = value => {
+    console.log('re');
+    this.setState({
+      isLoading: value,
+    });
+  };
+
   render() {
-    const { isModalOpen, image, tags } = this.state;
+    const { isModalOpen, isLoading, image, tags } = this.state;
 
     return (
       <>
@@ -31,9 +40,15 @@ export class ImageGallery extends Component {
             onOpenModal={this.openModal}
           />
         </List>
+        {isLoading && <Loader />}
         {isModalOpen && (
-          <Modal onCloseModal={this.closeModal}>
-            <img src={image} alt={tags} />
+          <Modal onCloseModal={this.closeModal} onLoading={this.handleIsLoad}>
+            <img
+              src={image}
+              alt={tags}
+              loading="lazy"
+              onLoad={() => this.handleIsLoad(false)}
+            />
           </Modal>
         )}
       </>
