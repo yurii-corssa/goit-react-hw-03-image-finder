@@ -1,12 +1,27 @@
-import { ItemImage } from 'components/ItemImage/ItemImage';
-import { ListItems } from './ImageGalleryItem.styled';
+import { Image, ListItems } from './ImageGalleryItem.styled';
+import { Component } from 'react';
+import { ImageLoader } from 'components/ImageLoader/ImageLoader';
 
-export const ImageGalleryItem = ({ images, onOpenModal }) => {
-  return images.map(({ id, webformatURL, largeImageURL, tags }) => {
+export class ImageGalleryItem extends Component {
+  state = {
+    isLoad: false,
+  };
+
+  handleIsLoad = () => this.setState({ isLoad: true });
+
+  render() {
+    const { image, alt, onClick } = this.props;
+
     return (
-      <ListItems key={id} onClick={() => onOpenModal(largeImageURL, tags)}>
-        <ItemImage src={webformatURL} alt={tags} />
+      <ListItems onClick={onClick}>
+        <Image
+          src={image}
+          alt={alt}
+          loading="lazy"
+          onLoad={this.handleIsLoad}
+        />
+        {!this.state.isLoad && <ImageLoader />}
       </ListItems>
     );
-  });
-};
+  }
+}

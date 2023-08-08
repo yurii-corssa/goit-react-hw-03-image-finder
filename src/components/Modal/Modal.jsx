@@ -6,20 +6,23 @@ const modalRoot = document.querySelector('#modal-root');
 
 export class Modal extends Component {
   componentDidMount() {
-    document.addEventListener('keydown', this.props.onCloseModal);
-    this.props.onLoading(true);
+    document.addEventListener('keydown', this.onClose);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.props.onCloseModal);
+    document.removeEventListener('keydown', this.onClose);
   }
 
-  render() {
-    const { onCloseModal, children } = this.props;
+  onClose = e => {
+    if (e.target === e.currentTarget || e.code === 'Escape') {
+      this.props.onClose();
+    }
+  };
 
+  render() {
     return createPortal(
-      <Backdrop onClick={onCloseModal}>
-        <ModalContainer>{children}</ModalContainer>
+      <Backdrop onClick={this.onClose}>
+        <ModalContainer>{this.props.children}</ModalContainer>
       </Backdrop>,
       modalRoot
     );

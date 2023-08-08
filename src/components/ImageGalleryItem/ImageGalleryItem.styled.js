@@ -11,3 +11,13 @@ export const ListItems = styled.li`
     filter: brightness(0.7);
   }
 `;
+
+export const Image = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease-out, filter 0.2s ease-out;
+`;
